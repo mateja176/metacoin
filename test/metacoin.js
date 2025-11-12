@@ -48,7 +48,10 @@ contract('MetaCoin', function (accounts) {
   });
 
   it('should send coins from account 0 to 1', async function () {
-    assert.isTrue(accounts[1] ? true : false, 'accounts[1] does not exist. Use TronBox Runtime Environment!');
+    assert.isTrue(
+      accounts[1] ? true : false,
+      'accounts[1] does not exist. Use TronBox Runtime Environment!'
+    );
 
     this.timeout(10000);
     const accountOneStartingBalance = await metaCoinInstance.balanceOf(accounts[0]);
@@ -73,7 +76,10 @@ contract('MetaCoin', function (accounts) {
   });
 
   it('should allow owner to withdraw TRX after unlock time', async function () {
-    assert.isTrue(accounts[1] ? true : false, 'accounts[1] does not exist. Use TronBox Runtime Environment!');
+    assert.isTrue(
+      accounts[1] ? true : false,
+      'accounts[1] does not exist. Use TronBox Runtime Environment!'
+    );
     await wait(10);
 
     const initialReceiverBalance = await tronWeb.trx.getBalance(accounts[1]);
@@ -84,7 +90,11 @@ contract('MetaCoin', function (accounts) {
     const withdrawTx = await metaCoinInstance.withdraw(accounts[1]);
     await waitForTransactionReceipt(withdrawTx);
     const withdrawTxInfo = await tronWeb.trx.getTransactionInfo(withdrawTx);
-    assert.equal(withdrawTxInfo.receipt.result, 'SUCCESS', 'Withdraw transaction was not successful.');
+    assert.equal(
+      withdrawTxInfo.receipt.result,
+      'SUCCESS',
+      'Withdraw transaction was not successful.'
+    );
 
     assert.equal(
       await tronWeb.trx.getBalance(accounts[1]),

@@ -1,0 +1,6 @@
+{
+  "version": "0.2",
+  "language": "en",
+  "words": ["Localnet", "metacoin", "millis", "tronbox"],
+  "ignorePaths": ["node_modules", "build", "*.lock"]
+}
