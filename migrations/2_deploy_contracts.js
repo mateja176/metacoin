@@ -1,10 +1,7 @@
-const ConvertLib = artifacts.require('./ConvertLib.sol');
 const MetaCoin = artifacts.require('./MetaCoin.sol');
 
 module.exports = async function (deployer, network) {
-  await deployer.deploy(ConvertLib);
-  await deployer.link(ConvertLib, MetaCoin);
-  await deployer.deploy(MetaCoin, 10000);
+  await deployer.deploy(MetaCoin);
 
   if (network === 'development' && typeof web3 === 'undefined') {
     // This code block is executed only when the network is 'development' as defined in tronbox-config.js

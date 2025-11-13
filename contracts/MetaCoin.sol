@@ -2,7 +2,6 @@
 pragma solidity ^0.8.20;
 
 import { ERC20 } from '@openzeppelin/contracts/token/ERC20/ERC20.sol';
-import './ConvertLib.sol';
 
 // To use console.log, you need TronBox Runtime Environment
 // (https://hub.docker.com/r/tronbox/tre) as your private network.
@@ -20,12 +19,9 @@ contract MetaCoin is ERC20 {
   // Unlock time for TRX locking feature
   uint256 public unlockTime;
 
-  /**
-   * @param _initialSupply The initial supply.
-   */
-  constructor(uint256 _initialSupply) ERC20('MetaCoin', 'MC') {
+  constructor() ERC20('MetaCoin', 'MC') {
     owner = msg.sender;
-    _mint(msg.sender, _initialSupply);
+    _mint(msg.sender, 20000);
   }
 
   /**
@@ -72,7 +68,7 @@ contract MetaCoin is ERC20 {
    * @return convertedBalance The converted balance.
    */
   function getConvertedBalance(address _account) public view returns (uint256 convertedBalance) {
-    return ConvertLib.convert(balanceOf(_account), 2);
+    return convert(balanceOf(_account), 2);
   }
 
   /**
@@ -81,5 +77,15 @@ contract MetaCoin is ERC20 {
    */
   function getOwner() public view returns (address ownerAddress) {
     return owner;
+  }
+
+  /**
+   * @dev Multiplies the input value by the specified conversion rate.
+   * @param _amount The value to convert.
+   * @param _conversionRate The conversion rate.
+   * @return convertedAmount The converted value.
+   */
+  function convert(uint _amount, uint _conversionRate) public pure returns (uint convertedAmount) {
+    return _amount * _conversionRate;
   }
 }
