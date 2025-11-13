@@ -23,6 +23,7 @@
   "license": "MIT",
   "dependencies": {
     "@openzeppelin/contracts": "5.4.0",
+    "hardhat": "^2.27.0",
     "picocolors": "1.1.1",
     "tronbox": "^4.4.0",
     "tronweb": "^6.1.0"
